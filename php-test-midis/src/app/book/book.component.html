@@ -1,0 +1,29 @@
+<div>
+    <button (click)="get_ten('prev')">Previous</button>
+    <button (click)="get_ten('next')">Next</button>
+    <label> page: {{pages_count}} from: {{pages}}</label>
+</div>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th 
+                    style="cursor: pointer;" 
+                    (click)="sorting('nameSort')"
+                >Name</th>
+                <th>Message</th>
+                <th 
+                    style="cursor: pointer;" 
+                    (click)="sorting('dateSort')"
+                >Date</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let mes of ten_mess">
+            <tr>
+                <td>{{ mes.name }}</td>
+                <td>{{ mes.message }}</td>
+                <td>{{ mes.date | date:'shortDate' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,68 @@
+<form #f="ngForm">
+    <div>
+        <label>*Username:</label><br>
+        <input 
+        class="form-control"
+        type="text"
+        id="name"
+        name="f_name"
+        ngModel
+        required>
+    </div>
+    <div>
+        <label>*email:</label><br>
+        <input 
+        class="form-control"
+        type="email" 
+        id="email"
+        name="f_email"
+        ngModel
+        required
+        email>
+    </div>
+    <div>
+        <label>*web:</label><br>
+        <input 
+        class="form-control"
+        type="text" 
+        id="web"
+        name="f_web"
+        ngModel
+        required>
+    </div>
+    <div>
+        <label>*message:</label><br>
+        <textarea 
+        class="form-control"
+        id="message" 
+        name="f_message"
+        ngModel
+        cols="30" rows="10" 
+        required
+        ></textarea>
+    </div>
+    <button 
+        type="submit"
+        id="subButton"
+        (click)="send_message(f)"
+        [disabled]="!f.valid"
+        >Add message</button><br>
+    <label>* - required fields</label>
+    
+    <div class="container-fluid py-3">
+          <div class="row mt-3">
+            <div class="col-sm-12 mb-2">
+              <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+              <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
+                <div *ngIf="recaptcha.errors?.['required']">This field is required.</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 mb-2">
+              <button type="button" class="btn btn-sm btn-primary" (click)="send(f)">Send</button>
+            </div>
+          </div>
+      </div>
+
+</form>
